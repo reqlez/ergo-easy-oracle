@@ -33,8 +33,7 @@ services:
       dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
     container_name: tn-ergo-oracle-core
     volumes:
-      - ./config/oracle_config.yaml:/config/oracle_config.yaml
-      - ./config/pool_config.yaml:/config/pool_config.yaml
+      - ./config:/config
       - ./data:/data
     ports:
       - "9010:9010"
