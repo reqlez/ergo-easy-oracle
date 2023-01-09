@@ -12,7 +12,7 @@ volumes:
 services:
   # Ergo blockchain node
   node:
-    image: ergoplatform/ergo:v5.0.3
+    image: ergoplatform/ergo:v5.0.4
     container_name: tn-ergo-node
     command: --testnet -c /etc/ergo.conf
     volumes:
@@ -33,7 +33,9 @@ services:
       dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
     container_name: tn-ergo-oracle-core
     volumes:
-      - ./config/oracle_config.yaml:/config/oracle_config.yaml:ro
+      - ./config/oracle_config.yaml:/config/oracle_config.yaml
+      - ./config/pool_config.yaml:/config/pool_config.yaml
+      - ./data:/data
     ports:
       - "9010:9010"
     depends_on:
