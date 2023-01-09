@@ -42,10 +42,11 @@ Stop containers:
 docker compose down
 ```
 
-Uncomment / set settings like apiKeyHash + node_api_key:
+Uncomment / set settings like apiKeyHash + node_api_key ( pool_config optional, should migrate from oracle_config ):
 
 - `config/ergo.conf`
 - `config/oracle_config.yaml`
+- `config/pool_config.yaml`
 
 Start containers and initialize wallet:
 
