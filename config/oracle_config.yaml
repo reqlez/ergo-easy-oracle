@@ -1,5 +1,6 @@
 node_ip: 172.17.0.1
 node_port: 9052
+node_url: 'http://172.17.0.1:9052'
 node_api_key: CHANGE_ME_API_KEY
 base_fee: 1100000
 log_level: INFO
