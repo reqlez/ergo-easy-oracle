@@ -1,4 +1,4 @@
-FROM rust:1.66.0 as builder
+FROM rust:1.66.1 as builder
 WORKDIR /usr/src/oracle-core
 COPY . .
 RUN cargo install --path core
