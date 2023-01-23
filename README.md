@@ -88,3 +88,17 @@ For troubleshooting, check combined node + oracle logs via:
 ```console
 docker compose logs -f
 ```
+
+Or individual logs, via:
+
+```console
+docker compose logs -f core
+docker compose logs -f node
+```
+
+You may also have to restart the oracle, after unlocking wallet, for example:
+
+```console
+docker compose restart core
+```
+
