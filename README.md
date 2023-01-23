@@ -24,10 +24,12 @@ docker network create tn-ergo-node
 docker volume create tn_ergo_node
 ```
 
-Build/Start containers temporarily to generate API Key Hash:
+Build + start node container temporarily to generate API Key Hash:
 
 ```console
-docker compose up -d --build
+docker compose build --no-cache
+docker compose up --no-start
+docker compose start node
 ```
 
 Generate an 'apiKeyHash' for node, ex:
@@ -36,22 +38,20 @@ Generate an 'apiKeyHash' for node, ex:
 curl -X POST "http://localhost:9052/utils/hash/blake2b" -H "Content-Type: application/json" -d "\"YOUR_API_KEY\""
 ```
 
-Stop containers:
+Stop node container:
 
 ```console
-docker compose down
+docker compose stop node
 ```
 
-Uncomment / set settings like apiKeyHash + node_api_key ( pool_config optional, should migrate from oracle_config ):
+Uncomment / set settings like apiKeyHash:
 
-- `config/ergo.conf`
-- `config/oracle_config.yaml`
-- `config/pool_config.yaml`
+- `nano config/ergo.conf`
 
-Start containers and initialize wallet:
+Start node container and initialize wallet:
 
 ```console
-docker compose up -d
+docker compose start node
 ```
 
 ```console
@@ -64,9 +64,14 @@ Get wallet address so you can set it under 'oracle_address' in oracle config yam
 curl -X GET "http://localhost:9052/wallet/addresses" -H "api_key: YOUR_API_KEY"
 ```
 
-Visit https://tn-faucet.ergohost.io and get some test ERG for your address.
+Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet address.
 
-After setting 'oracle_address' in oracle config yaml, restart containers.
+Uncomment / set settings like node_api_key + oracle_address ( pool_config optional, should migrate from oracle_config ):
+
+- `config/oracle_config.yaml`
+- `config/pool_config.yaml`
+
+Wait for node to sync, you can monitor progress under: http://ip.of.your.node:9052/panel
 
 ```console
 docker compose down
@@ -75,7 +80,8 @@ docker compose down
 docker compose up -d
 ```
 
-Please note that you will need the oracle tokens sent to that address as well before it will operate.
+Please note that you will need the oracle tokens sent to that address as well ( oracle_address ).
+Keep the wallet unlocked, for the oracle to be operational.
 
 For troubleshooting, check combined node + oracle logs via:
 
