@@ -101,4 +101,4 @@ You may also have to restart the oracle, after unlocking wallet, for example:
 ```console
 docker compose restart core
 ```
-
+However, the auto-restart process should be able to handle that condition.
