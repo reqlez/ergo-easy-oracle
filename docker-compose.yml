@@ -32,6 +32,8 @@ services:
       context: ./oracle-core # Path to oracle-core repo
       dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
     container_name: tn-ergo-oracle-core
+    env_file:
+      - ./config/env
     volumes:
       - ./config:/config
       - ./data:/data
