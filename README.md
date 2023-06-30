@@ -66,8 +66,9 @@ curl -X GET "http://localhost:9052/wallet/addresses" -H "api_key: YOUR_API_KEY"
 
 Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet address.
 
-Uncomment / set settings like node_api_key + oracle_address ( pool_config optional, should migrate from oracle_config ):
+Uncomment / set settings like ORACLE_NODE_API_KEY + oracle_address:
 
+- `config/env`
 - `config/oracle_config.yaml`
 - `config/pool_config.yaml`
 
