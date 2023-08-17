@@ -39,6 +39,7 @@ services:
       - ./data:/data
     ports:
       - "9010:9010"
+      - "9099:9099"
     depends_on:
       - "node"
     restart: unless-stopped
