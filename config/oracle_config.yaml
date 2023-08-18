@@ -5,4 +5,4 @@ core_api_port: 9010
 metrics_port: 9099
 oracle_address: CHANGE_ME_ADDRESS
 data_point_source_custom_script: null
-explorer_url: null
+explorer_url: 'https://tn-ergo-explorer.anetabtc.io'
