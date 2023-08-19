@@ -39,10 +39,40 @@ services:
       - ./data:/data
     ports:
       - "9010:9010"
-      - "9099:9099"
+      - "9011:9011"
     depends_on:
       - "node"
     restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  # Prometheus
+  prometheus:
+    image: prom/prometheus
+    container_name: tn-ergo-oracle-prometheus
+    restart: unless-stopped
+    ports:
+      - "9099:9090"
+    command: --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: tn-ergo-oracle-grafana
+    restart: unless-stopped
+    ports:
+      - '3099:3000'
+    depends_on:
+      - "prometheus"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
     logging:
       options:
         max-size: "10m"
