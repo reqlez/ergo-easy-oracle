@@ -2,7 +2,7 @@ node_url: 'http://node:9052'
 base_fee: 1100000
 log_level: INFO
 core_api_port: 9010
-metrics_port: 9099
+metrics_port: 9011
 oracle_address: CHANGE_ME_ADDRESS
 data_point_source_custom_script: null
 explorer_url: 'https://tn-ergo-explorer.anetabtc.io'
