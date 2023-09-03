@@ -92,8 +92,10 @@ docker compose logs -f
 Or individual logs, via:
 
 ```console
-docker compose logs -f core
 docker compose logs -f node
+docker compose logs -f core
+docker compose logs -f prometheus
+docker compose logs -f grafana
 ```
 
 You may also have to restart the oracle, after unlocking wallet, for example:
