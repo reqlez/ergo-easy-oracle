@@ -31,4 +31,4 @@ EXPOSE 9010 9011
 
 USER oracle-core
 
-CMD ["oracle-core", "--oracle-config-file", "/data/config/oracle_config.yaml", "--pool-config-file", "/data/config/pool_config.yaml", "-d", "/data", "run", "--enable-rest-api"]
+CMD ["oracle-core", "--oracle-config-file", "/data/oracle_config.yaml", "--pool-config-file", "/data/pool_config.yaml", "-d", "/data", "run", "--enable-rest-api"]
