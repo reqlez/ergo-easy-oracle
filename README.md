@@ -46,7 +46,7 @@ docker compose stop node
 
 Uncomment / set settings like apiKeyHash:
 
-- `nano data/config/ergo.conf`
+- `nano node_data/ergo.conf`
 
 Start node container and initialize wallet:
 
@@ -69,7 +69,7 @@ Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet addres
 Uncomment / set settings like CCARCH ( aarch64 or x86_64 ), ORACLE_NODE_API_KEY, oracle_address, etc:
 
 - `docker-compose.yml`
-- `data/config/oracle_config.yaml`
+- `oracle_data/oracle_config.yaml`
 
 Wait for node to sync, you can monitor progress under: http://ip.of.your.node:9052/panel
 
