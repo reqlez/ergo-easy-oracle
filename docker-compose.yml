@@ -33,7 +33,7 @@ services:
       dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
     container_name: tn-ergo-oracle-core
     args:
-      CCARCH: x86_64
+      CCARCH: x86_64  # Valid Options: x86_64 or aarch64
     environment:
       - ORACLE_NODE_API_KEY=CHANGE_ME_KEY
     volumes:
