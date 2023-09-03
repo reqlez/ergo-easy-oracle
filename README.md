@@ -14,14 +14,15 @@ Clone oracle-core repo:
 git clone -b develop https://github.com/ergoplatform/oracle-core.git
 ```
 
-Create Docker network / volume:
+Create Docker network and set folder permissions with container UIDs:
 
 ```console
 docker network create tn-ergo-node
 ```
 
 ```console
-docker volume create tn_ergo_node
+sudo chown -R 9052:9052 node_data
+sudo chown -R 9010:9010 oracle_data
 ```
 
 Build + start node container temporarily to generate API Key Hash:
@@ -46,7 +47,7 @@ docker compose stop node
 
 Uncomment / set settings like apiKeyHash:
 
-- `nano node_data/ergo.conf`
+- `sudo nano node_data/ergo.conf`
 
 Start node container and initialize wallet:
 
@@ -68,8 +69,8 @@ Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet addres
 
 Uncomment / set settings like CCARCH ( aarch64 or x86_64 ), ORACLE_NODE_API_KEY, oracle_address, etc:
 
-- `docker-compose.yml`
-- `oracle_data/oracle_config.yaml`
+- `nano docker-compose.yml`
+- `sudo nano oracle_data/oracle_config.yaml`
 
 Wait for node to sync, you can monitor progress under: http://ip.of.your.node:9052/panel
 
