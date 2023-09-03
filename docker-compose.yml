@@ -19,7 +19,7 @@ services:
       - "9022:9022"
     restart: unless-stopped
     environment:
-      - _JAVA_OPTIONS="-Xms4G -Xmx4G" # HEAP: same values for best performance
+      - _JAVA_OPTIONS=-Xms4G -Xmx4G # HEAP: same values for best performance
     logging:
       options:
         max-size: "10m"
