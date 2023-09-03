@@ -21,8 +21,7 @@ docker network create tn-ergo-node
 ```
 
 ```console
-sudo chown -R 9052:9052 node_data
-sudo chown -R 9010:9010 oracle_data
+sudo chown -R 9052:9052 node_data && sudo chown -R 9010:9010 oracle_data
 ```
 
 Build + start node container temporarily to generate API Key Hash:
