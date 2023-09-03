@@ -83,7 +83,7 @@ docker compose up -d
 Please note that you will need the oracle tokens sent to that address as well ( oracle_address ).
 Keep the wallet unlocked, for the oracle to be operational.
 
-For troubleshooting, check combined node + oracle logs via:
+For troubleshooting, check combined logs via:
 
 ```console
 docker compose logs -f
