@@ -17,7 +17,7 @@ services:
     command: --testnet -c /etc/ergo.conf
     volumes:
       - tn_ergo_node:/home/ergo/.ergo
-      - ./data/config/ergo.conf:/etc/ergo.conf:ro
+      - ./node_data/ergo.conf:/etc/ergo.conf:ro
     ports:
       - "9052:9052"
       - "9022:9022"
@@ -37,7 +37,7 @@ services:
     environment:
       - ORACLE_NODE_API_KEY=CHANGE_ME_KEY
     volumes:
-      - ./data:/data
+      - ./oracle_data:/data
     ports:
       - "9010:9010"
       - "9011:9011"
@@ -57,7 +57,7 @@ services:
       - "9099:9090"
     command: --config.file=/etc/prometheus/prometheus.yaml
     volumes:
-      - ./data/config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ./prom_data/prometheus.yaml:/etc/prometheus/prometheus.yaml
     logging:
       options:
         max-size: "10m"
