@@ -5,10 +5,6 @@ networks:
     external: true
     name: tn-ergo-node
 
-volumes:
-  tn_ergo_node:
-    external: true
-
 services:
   # Ergo blockchain node
   node:
@@ -16,12 +12,14 @@ services:
     container_name: tn-ergo-node
     command: --testnet -c /etc/ergo.conf
     volumes:
-      - tn_ergo_node:/home/ergo/.ergo
+      - ./node_data:/home/ergo/.ergo
       - ./node_data/ergo.conf:/etc/ergo.conf:ro
     ports:
       - "9052:9052"
       - "9022:9022"
     restart: unless-stopped
+    environment:
+      - _JAVA_OPTIONS="-Xms4G -Xmx4G" # HEAP: same values for best performance
     logging:
       options:
         max-size: "10m"
@@ -31,11 +29,9 @@ services:
     build:
       context: ./oracle-core # Path to oracle-core repo
       dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
+      args:
+        CCARCH: x86_64  # Change if different arch, options: x86_64 or aarch64
     container_name: tn-ergo-oracle-core
-    args:
-      CCARCH: x86_64  # Valid Options: x86_64 or aarch64
-    environment:
-      - ORACLE_NODE_API_KEY=CHANGE_ME_KEY
     volumes:
       - ./oracle_data:/data
     ports:
@@ -44,6 +40,8 @@ services:
     depends_on:
       - "node"
     restart: unless-stopped
+    environment:
+      - ORACLE_NODE_API_KEY=CHANGE_ME_KEY  # Change to your Ergo Node API Key
     logging:
       options:
         max-size: "10m"
@@ -52,12 +50,12 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: tn-ergo-oracle-prometheus
-    restart: unless-stopped
-    ports:
-      - "9099:9090"
     command: --config.file=/etc/prometheus/prometheus.yaml
     volumes:
       - ./prom_data/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    ports:
+      - "9099:9090"
+    restart: unless-stopped
     logging:
       options:
         max-size: "10m"
@@ -68,14 +66,14 @@ services:
     container_name: tn-ergo-oracle-grafana
     volumes:
       - tn_grafana:/var/lib/grafana
-    restart: unless-stopped
     ports:
       - '3099:3000'
     depends_on:
       - "prometheus"
+    restart: unless-stopped
     environment:
       GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin  # Change during first login.
       GF_FEATURE_TOGGLES_ENABLE: publicDashboards
     logging:
       options:
