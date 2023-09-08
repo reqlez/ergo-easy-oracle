@@ -26,11 +26,12 @@ services:
         max-file: "3"
   # Ergo oracle-core
   core:
-    build:
-      context: ./oracle-core # Path to oracle-core repo
-      dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
-      args:
-        CCARCH: x86_64  # Change if different arch, options: x86_64 or aarch64
+    #build:
+    #  context: ./oracle-core # Path to oracle-core repo
+    #  dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
+    #  args:
+    #    CCARCH: x86_64  # Change if different arch, options: x86_64 or aarch64
+    image: greenden/oracle-core:latest
     container_name: tn-ergo-oracle-core
     volumes:
       - ./oracle_data:/data
