@@ -8,7 +8,7 @@ Clone this repo:
 git clone https://github.com/reqlez/tn-ergo-easy-oracle.git && cd tn-ergo-easy-oracle
 ```
 
-Clone oracle-core repo:
+Clone oracle-core repo ( optional only if building instead of using DockerHub image ):
 
 ```console
 git clone -b develop https://github.com/ergoplatform/oracle-core.git
@@ -66,7 +66,7 @@ curl -X GET "http://localhost:9052/wallet/addresses" -H "api_key: YOUR_API_KEY"
 
 Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet address.
 
-Uncomment / set settings like CCARCH ( aarch64 or x86_64 ), ORACLE_NODE_API_KEY, oracle_address, etc:
+Uncomment / set settings like ORACLE_NODE_API_KEY, oracle_address, etc ( and CCARCH - aarch64 or x86_64, if building ):
 
 - `nano docker-compose.yml`
 - `sudo nano oracle_data/oracle_config.yaml`
