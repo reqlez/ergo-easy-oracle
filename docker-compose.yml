@@ -3,20 +3,20 @@ version: "3.8"
 networks:
   default:
     external: true
-    name: tn-ergo-node
+    name: ergo-node
 
 services:
   # Ergo blockchain node
   node:
     image: ergoplatform/ergo:v5.0.14
-    container_name: tn-ergo-node
-    command: --testnet -c /etc/ergo.conf
+    container_name: ergo-node
+    command: --mainnet -c /etc/ergo.conf
     volumes:
       - ./node_data:/home/ergo/.ergo
       - ./node_data/ergo.conf:/etc/ergo.conf:ro
     ports:
-      - "9052:9052"
-      - "9022:9022"
+      - "9053:9053"
+      - "9030:9030"
     restart: unless-stopped
     environment:
       - _JAVA_OPTIONS=-Xms4G -Xmx4G # HEAP: same values for best performance
@@ -32,7 +32,7 @@ services:
     #  args:
     #    CCARCH: x86_64  # Change if different arch, options: x86_64 or aarch64
     image: greenden/oracle-core:latest
-    container_name: tn-ergo-oracle-core
+    container_name: ergo-oracle-core
     volumes:
       - ./oracle_data:/data
     ports:
@@ -50,7 +50,7 @@ services:
   # Prometheus
   prometheus:
     image: prom/prometheus
-    container_name: tn-ergo-oracle-prometheus
+    container_name: ergo-oracle-prometheus
     command: --config.file=/etc/prometheus/prometheus.yaml
     volumes:
       - ./prom_data/prometheus.yaml:/etc/prometheus/prometheus.yaml
@@ -64,9 +64,9 @@ services:
   # Grafana
   grafana:
     image: grafana/grafana:latest
-    container_name: tn-ergo-oracle-grafana
+    container_name: ergo-oracle-grafana
     volumes:
-      - tn_grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
     ports:
       - '3099:3000'
     depends_on:
@@ -82,6 +82,6 @@ services:
         max-file: "3"
 
 volumes:
-    tn_grafana:
+    grafana:
         external: false
         
