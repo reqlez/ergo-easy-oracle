@@ -5,7 +5,7 @@ Prerequisites: make sure git, nano?, docker, and docker compose plugin are insta
 Clone this repo:
 
 ```console
-git clone https://github.com/reqlez/tn-ergo-easy-oracle.git && cd tn-ergo-easy-oracle
+git clone https://github.com/reqlez/ergo-easy-oracle.git && cd ergo-easy-oracle
 ```
 
 Clone oracle-core repo ( optional only if building instead of using DockerHub image ):
@@ -17,7 +17,7 @@ git clone -b develop https://github.com/ergoplatform/oracle-core.git
 Create Docker network and set folder permissions with container UIDs:
 
 ```console
-docker network create tn-ergo-node
+docker network create ergo-node
 ```
 
 ```console
@@ -35,7 +35,7 @@ docker compose start node
 Generate an 'apiKeyHash' for node, ex:
 
 ```console
-curl -X POST "http://localhost:9052/utils/hash/blake2b" -H "Content-Type: application/json" -d "\"YOUR_API_KEY\""
+curl -X POST "http://localhost:9053/utils/hash/blake2b" -H "Content-Type: application/json" -d "\"YOUR_API_KEY\""
 ```
 
 Stop node container:
@@ -48,30 +48,30 @@ Uncomment / set settings like apiKeyHash:
 
 - `sudo nano node_data/ergo.conf`
 
-Start node container and initialize wallet:
+Start node container and initialize wallet - make sure to store the mnemonic output in a safe place:
 
 ```console
 docker compose start node
 ```
 
 ```console
-curl -X POST "http://localhost:9052/wallet/init" -H "api_key: YOUR_API_KEY" -H "Content-Type: application/json" -d "{\"pass\":\"YOUR_WALLET_PASS\"}"
+curl -X POST "http://localhost:9053/wallet/init" -H "api_key: YOUR_API_KEY" -H "Content-Type: application/json" -d "{\"pass\":\"YOUR_WALLET_PASS\"}"
 ```
 
 Get wallet address so you can set it under 'oracle_address' in oracle config yaml
 
 ```console
-curl -X GET "http://localhost:9052/wallet/addresses" -H "api_key: YOUR_API_KEY"
+curl -X GET "http://localhost:9053/wallet/addresses" -H "api_key: YOUR_API_KEY"
 ```
 
-Visit https://tn-faucet.ergohost.io and get some test ERG for your wallet address.
+Add some ERG for your wallet address.
 
 Uncomment / set settings like ORACLE_NODE_API_KEY, oracle_address, etc ( and CCARCH - aarch64 or x86_64, if building ):
 
 - `nano docker-compose.yml`
 - `sudo nano oracle_data/oracle_config.yaml`
 
-Wait for node to sync, you can monitor progress under: http://ip.of.your.node:9052/panel
+Wait for node to sync, you can monitor progress under: http://ip.of.your.node:9053/panel
 
 ```console
 docker compose down
