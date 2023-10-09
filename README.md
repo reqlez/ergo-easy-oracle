@@ -1,7 +1,7 @@
 # Easy Ergo Node + Oracle Setup
 
 Prerequisites: make sure git, nano?, docker, and docker compose plugin are installed.
-For Docker, follow: https://docs.docker.com/engine/install/ubuntu/  +  https://docs.docker.com/engine/install/linux-postinstall/
+For Docker, follow: https://docs.docker.com/engine/install/  +  https://docs.docker.com/engine/install/linux-postinstall/
 
 Clone this repo:
 
