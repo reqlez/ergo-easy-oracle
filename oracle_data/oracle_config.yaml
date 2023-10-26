@@ -5,4 +5,4 @@ core_api_port: 9010
 metrics_port: 9011
 oracle_address: CHANGE_ME_ADDRESS
 data_point_source_custom_script: null
-explorer_url: 'https://ergo-explorer.tosidrop.io'
+explorer_url: 'https://explorer.ergohost.io'
