@@ -29,7 +29,7 @@ Copy example .env file and edit:
 ( Replace CHANGE_ME_KEY with NEW key same as YOUR_API_KEY two steps below )
 
 ```console
-cp .env.example .env
+cp env.example .env
 nano .env
 ```
 
