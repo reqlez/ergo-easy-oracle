@@ -1,5 +1,6 @@
 node_url: 'http://node:9053'
-base_fee: 1100000
+base_fee: 1500000
+scan_start_height: 1100000
 log_level: INFO
 core_api_port: 9010
 metrics_port: 9011
