@@ -57,7 +57,7 @@ Uncomment / set settings like apiKeyHash:
 
 - `sudo nano node_data/ergo.conf`
 
-Start node container and initialize wallet - IMPORTANT: make sure to store the mnemonic phrase output in a safe place:
+Start node and initialize wallet - IMPORTANT: make sure to store the mnemonic phrase output in a safe place:
 
 ```console
 docker compose start node
