@@ -26,7 +26,7 @@ sudo chown -R 9052:9052 node_data && sudo chown -R 9010:9010 oracle_data
 ```
 
 Copy example .env file and edit:
-( Replace CHANGE_ME_KEY with the same NEW api key as YOUR_API_KEY two steps from now ):
+( Replace CHANGE_ME_KEY with NEW key same as YOUR_API_KEY two steps below )
 
 ```console
 cp .env.example .env
