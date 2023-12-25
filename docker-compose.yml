@@ -19,18 +19,19 @@ services:
       - "9030:9030"
     restart: unless-stopped
     environment:
-      - _JAVA_OPTIONS=-Xms4G -Xmx4G # HEAP: same values for best performance
+      - _JAVA_OPTIONS=-Xms${ERGNODE_HEAP:-4G} -Xmx${ERGNODE_HEAP:-4G}
     logging:
       options:
         max-size: "10m"
         max-file: "3"
   # Ergo oracle-core
   core:
+    # Uncomment below 5 lines and comment out 'image: ...' if custom building
     #build:
     #  context: ./oracle-core # Path to oracle-core repo
     #  dockerfile: ../oracle.Dockerfile # Relative to oracle-core repo
     #  args:
-    #    CCARCH: x86_64  # Change if different arch, options: x86_64 or aarch64
+    #    CCARCH: ${CCARCH:-x86_64}
     image: ergoplatform/oracle-core:latest
     container_name: ergo-oracle-core
     volumes:
@@ -41,8 +42,8 @@ services:
     depends_on:
       - "node"
     restart: unless-stopped
-    environment:
-      - ORACLE_NODE_API_KEY=CHANGE_ME_KEY  # Change to your Ergo Node API Key
+    env_file:
+      - .env
     logging:
       options:
         max-size: "10m"
@@ -73,8 +74,8 @@ services:
       - "prometheus"
     restart: unless-stopped
     environment:
-      GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: admin  # Change during first login.
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASS:-admin}
       GF_FEATURE_TOGGLES_ENABLE: publicDashboards
     logging:
       options:
@@ -84,4 +85,3 @@ services:
 volumes:
     grafana:
         external: false
-        
